@@ -15,7 +15,8 @@ namespace SSDLDotNetCore.ConsoleApp
             DataSource = "SANDAR\\MSSQLSERVER2012",
             InitialCatalog = "SSDLDotNetCore",
             UserID = "sa",
-            Password = "admin123!"
+            Password = "admin123!",
+            TrustServerCertificate = true
         };
     }
 }
