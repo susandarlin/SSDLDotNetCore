@@ -1,0 +1,1 @@
+Scaffold-DbContext "Server=SANDAR\MSSQLSERVER2012;Database=SSDLDotNetCore;User Id = sa; Password = admin123!; TrustServerCertificate = true; Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context ScaffoldDbContextCommand
