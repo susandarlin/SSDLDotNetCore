@@ -1,4 +1,6 @@
 ﻿using Dapper;
+using SSDLDotNetCore.ConsoleApp.Dtos;
+using SSDLDotNetCore.ConsoleApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SSDLDotNetCore.ConsoleApp
+namespace SSDLDotNetCore.ConsoleApp.DapperExamples
 {
     internal class DapperExample
     {
@@ -21,9 +23,9 @@ namespace SSDLDotNetCore.ConsoleApp
             //Create("new title", "new author", "new content");
             //Update(14, "update title", "update author", "update content");
             Delete(14);
-        }   
+        }
 
-        private void Read() 
+        private void Read()
         {
             using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
             //using (IDbConnection db1 = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString))
@@ -32,10 +34,10 @@ namespace SSDLDotNetCore.ConsoleApp
             //}
             //db1
 
-            List<BlogDto> lst =  db.Query<BlogDto>("select * from Tbl_Blog").ToList();
+            List<BlogDto> lst = db.Query<BlogDto>("select * from Tbl_Blog").ToList();
             //lst[0].asdf();
 
-            foreach(BlogDto item in lst)
+            foreach (BlogDto item in lst)
             {
                 Console.WriteLine(item.BlogId);
                 Console.WriteLine(item.BlogTitle);
@@ -49,7 +51,7 @@ namespace SSDLDotNetCore.ConsoleApp
         {
             using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
             var item = db.Query<BlogDto>("select * from Tbl_Blog where BlogId = @BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
-            if(item is null)
+            if (item is null)
             {
                 Console.WriteLine("No data found.");
                 return;
@@ -61,7 +63,7 @@ namespace SSDLDotNetCore.ConsoleApp
             Console.WriteLine(item.BlogContent);
         }
 
-        public void Create(string title, string  author, string content)
+        public void Create(string title, string author, string content)
         {
             var item = new BlogDto
             {

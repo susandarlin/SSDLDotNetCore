@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SSDLDotNetCore.ConsoleApp
+namespace SSDLDotNetCore.ConsoleApp.AdoDotNetExamples
 {
     internal class AdoDotNetExample
     {
@@ -20,7 +20,7 @@ namespace SSDLDotNetCore.ConsoleApp
         public void Read()
         {
             // Ctrl + .
-            
+
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             connection.Open();
             Console.WriteLine("Connection open.");
@@ -118,7 +118,7 @@ namespace SSDLDotNetCore.ConsoleApp
             connection.Open();
             Console.WriteLine("Connection open.");
 
-            string query = "Select * from tbl_Blog where BlogId = @BlogId";            
+            string query = "Select * from tbl_Blog where BlogId = @BlogId";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@BlogId", id);
             SqlDataAdapter adapter = new SqlDataAdapter(command);
@@ -126,7 +126,7 @@ namespace SSDLDotNetCore.ConsoleApp
             adapter.Fill(dt);
 
             connection.Close();
-            Console.WriteLine("Connection close.");            
+            Console.WriteLine("Connection close.");
 
             if (dt.Rows.Count == 0)
             {

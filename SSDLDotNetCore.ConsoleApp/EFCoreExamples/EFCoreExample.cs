@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SSDLDotNetCore.ConsoleApp.Dtos;
 
-namespace SSDLDotNetCore.ConsoleApp
+namespace SSDLDotNetCore.ConsoleApp.EFCoreExamples
 {
     internal class EFCoreExample
     {
@@ -22,7 +23,7 @@ namespace SSDLDotNetCore.ConsoleApp
         private void Read()
         {
             var lst = db.Blogs.ToList();
-            foreach(BlogDto item in lst)
+            foreach (BlogDto item in lst)
             {
                 Console.WriteLine(item.BlogId);
                 Console.WriteLine(item.BlogTitle);
@@ -74,7 +75,7 @@ namespace SSDLDotNetCore.ConsoleApp
             Console.WriteLine(message);
         }
 
-        private void Update (int id, string title, string author, string content)
+        private void Update(int id, string title, string author, string content)
         {
             var item = db.Blogs.FirstOrDefault(x => x.BlogId == id);
             if (item is null)
@@ -95,7 +96,7 @@ namespace SSDLDotNetCore.ConsoleApp
         private void Delete(int id)
         {
             var item = db.Blogs.FirstOrDefault(x => x.BlogId == id);
-            if(item  is null)
+            if (item is null)
             {
                 Console.WriteLine("No data found.");
             }
