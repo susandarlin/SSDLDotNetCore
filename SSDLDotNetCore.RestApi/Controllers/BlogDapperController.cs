@@ -24,9 +24,7 @@ namespace SSDLDotNetCore.RestApi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetBlog(int id)
         {
-            string query = "select * from Tbl_Blog where BlogId = @BlogId";
-            using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
-            var item = db.Query<BlogModel>(query, new BlogModel { BlogId = id }).FirstOrDefault();
+            var item = FindById(id);
             if (item is null)
             {
                 return NotFound("No data found.");
@@ -56,6 +54,14 @@ namespace SSDLDotNetCore.RestApi.Controllers
         public IActionResult DeleteBlog(int id)
         {
             return Ok();
+        }
+
+        public BlogModel FindById(int id)
+        {
+            string query = "select * from Tbl_Blog where BlogId = @BlogId";
+            using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+            var item = db.Query<BlogModel>(query, new BlogModel { BlogId = id }).FirstOrDefault();
+            return item;
         }
     }
 }
