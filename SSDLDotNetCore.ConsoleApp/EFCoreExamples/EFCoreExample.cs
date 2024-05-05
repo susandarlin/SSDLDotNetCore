@@ -71,7 +71,7 @@ namespace SSDLDotNetCore.ConsoleApp.EFCoreExamples
             db.Blogs.Add(item);
             int result = db.SaveChanges();
 
-            string message = result > 0 ? "Saveing Successful." : "Saving Failed.";
+            string message = result > 0 ? "Saving Successful." : "Saving Failed.";
             Console.WriteLine(message);
         }
 
