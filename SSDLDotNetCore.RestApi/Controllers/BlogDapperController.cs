@@ -35,25 +35,103 @@ namespace SSDLDotNetCore.RestApi.Controllers
         [HttpPost]
         public IActionResult CreateBlog(BlogModel blog)
         {
-            return Ok();
+            string query = @"INSERT INTO [dbo].[Tbl_Blog]
+                            ([BlogTitle]
+                            ,[BlogAuthor]
+                            ,[BlogContent])
+                            VALUES
+                            (@BlogTitle
+                            ,@BlogAuthor
+                            ,@BlogContent)";
+
+            using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+            int result = db.Execute(query, blog);
+
+            string message = result > 0 ? "Saving Successful" : "Saving Failed";
+            return Ok(message);
         }
 
         [HttpPut("{id}")]
         public IActionResult UpdateBlog(int id, BlogModel blog)
         {
-            return Ok();
+            var item = FindById(id);
+            if (item is null)
+            {
+                return NotFound("No data found.");
+            }
+
+            blog.BlogId = id;
+            var query = @"UPDATE [dbo].[Tbl_Blog]
+                        SET [BlogTitle] = @BlogTitle
+                        ,[BlogAuthor] = @BlogAuthor
+                        ,[BlogContent] = @BlogContent
+                        WHERE BlogId = @BlogId";
+
+            using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+            int result = db.Execute(query, blog);
+
+            string message = result > 0 ? "Updating Successful" : "Updating Failed";
+            return Ok(message);
         }
 
         [HttpPatch("{id}")]
         public IActionResult PatchBlog(int id, BlogModel blog)
         {
-            return Ok();
+            var item = FindById(id);
+            if (item is null)
+            {
+                return NotFound("No data found.");
+            }
+
+            var conditions = string.Empty;
+
+            if (!string.IsNullOrEmpty(blog.BlogTitle))
+            {
+                conditions += " [BlogTitle] = @BlogTitle, ";
+            }
+            if (!string.IsNullOrEmpty(blog.BlogAuthor))
+            {
+                conditions += " [BlogAuthor] = @BlogAuthor, ";
+            }
+            if (!string.IsNullOrEmpty(blog.BlogContent))
+            {
+                conditions += " [BlogContent] = @BlogContent, ";
+            }
+            if (conditions.Length == 0)
+            {
+                return NotFound("No data to update.");
+            }
+
+            conditions = conditions.Substring(0, conditions.Length - 2);
+            blog.BlogId = id;
+
+            var query = $@"UPDATE [dbo].[Tbl_Blog]
+                        SET {conditions}
+                        WHERE BlogId = @BlogId";
+
+            using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+            int result = db.Execute(query, blog);
+
+            string message = result > 0 ? "Updating Successful" : "Updating Failed";
+            return Ok(message);
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteBlog(int id)
         {
-            return Ok();
+            var item = FindById(id);
+            if (item is null)
+            {
+                return NotFound("No data found.");
+            }
+
+            var query = @"delete from tbl_blog where BlogId = @BlogId";
+
+            using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+            int result = db.Execute(query, new BlogModel { BlogId = id });
+
+            string message = result > 0 ? "Deleting Successful" : "Deleting Failed";
+            return Ok(message);
         }
 
         public BlogModel FindById(int id)
