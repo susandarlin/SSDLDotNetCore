@@ -15,14 +15,14 @@ namespace SSDLDotNetCore.ConsoleAppHttpClientExamples
         private readonly string _blogEndpoint = "api/blog";
         public async Task RunAsync()
         {
-            //await ReadAsync();
+            await ReadAsync();
             //await EditAsync(1);
             //await EditAsync(100);
             //await DeleteAsync(21);
             //await CreateAsync("Testing title 30", "Testing author 30", "Testing content 30");
             //await UpdateAsync(30, "Testing title updated 30", "Testing author 30", "Testing content updated 30");
-            await PatchAsync(30, "Testing title updated 30 for Patch 1", "Testing author updated 30 for Patch 1");
-            await EditAsync(30);
+            //    await PatchAsync(30, "Testing title updated 30 for Patch 1", "Testing author updated 30 for Patch 1");
+            //    await EditAsync(30);
         }
         private async Task ReadAsync()
         {
