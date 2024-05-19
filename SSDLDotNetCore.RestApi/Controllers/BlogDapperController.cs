@@ -134,7 +134,7 @@ namespace SSDLDotNetCore.RestApi.Controllers
             return Ok(message);
         }
 
-        public BlogModel FindById(int id)
+        public BlogModel? FindById(int id)
         {
             string query = "select * from Tbl_Blog where BlogId = @BlogId";
             using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);

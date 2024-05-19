@@ -58,7 +58,7 @@ namespace SSDLDotNetCore.RestApi.Controllers
             }
 
             item.BlogTitle = blog.BlogTitle;
-            //item.BlogAuthor = blog.BlogAuthor;
+            item.BlogAuthor = blog.BlogAuthor;
             item.BlogContent = blog.BlogContent;
             var result = _context.SaveChanges();
 

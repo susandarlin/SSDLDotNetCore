@@ -18,6 +18,12 @@ foreach(var question in model.questions)
 
 Console.ReadLine();
 
+static string ToNuber(string num)
+{
+    num = num.Replace("၃", "3");
+    return num;
+}
+
 
 
 public class MainDto
