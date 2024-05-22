@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Runtime.InteropServices;
 using static SSDLDotNetCore.RestApiWithNLayer.Features.LatHtaukBayDin.LatHtaukBayDinController;
 
 namespace SSDLDotNetCore.RestApiWithNLayer.Features.BurmeseRecipes
@@ -16,18 +17,30 @@ namespace SSDLDotNetCore.RestApiWithNLayer.Features.BurmeseRecipes
             var model = JsonConvert.DeserializeObject<BurmeseRecipeList>(jsonStr);
             return model;
         }
-        [HttpGet("BurmeseRecipeList")]
+        [HttpGet()]
         public async Task<IActionResult> BurmeseRecipeMenu()
         {
             var model = await GetDataAsync();
             return Ok(model.BurmeseRecipe);
         }
 
-        [HttpGet("{guid}")]
-        public async Task<IActionResult> Detail(string guid)
+        //[HttpGet("{guid}")]
+        //public async Task<IActionResult> Detail(string guid)
+        //{
+        //    var model = await GetDataAsync();
+        //    return Ok(model.BurmeseRecipe.FirstOrDefault(x => x.Guid == guid));
+        //}
+
+        [HttpGet("{UserEngType}")]
+        public async Task<IActionResult> GetBurmeseRecipeByType(string UserEngType)
         {
             var model = await GetDataAsync();
-            return Ok(model.BurmeseRecipe.FirstOrDefault(x => x.Guid == guid));
+            var item = model.UserTypes.FirstOrDefault(x => x.UserEngType == UserEngType);
+            if (item is null) return NotFound();
+
+            var UserCode = item.UserCode;
+            var lst = model.BurmeseRecipe.Where(x => x.UserType == UserCode);
+            return Ok(lst);
         }
 
         public class BurmeseRecipeList
