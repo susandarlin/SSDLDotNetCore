@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.ConsoleAppHt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.ConsoleAppRestClientExamples", "SSDLDotNetCore.ConsoleAppRestClientExamples\SSDLDotNetCore.ConsoleAppRestClientExamples.csproj", "{FEAE9ED2-CBFE-4791-AC56-EE4117BC5DF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.PizzaApi", "SSDLDotNetCore.PizzaApi\SSDLDotNetCore.PizzaApi.csproj", "{6166DA76-2CC4-480D-852A-7591A29B0FB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.PizzaApi", "SSDLDotNetCore.PizzaApi\SSDLDotNetCore.PizzaApi.csproj", "{6166DA76-2CC4-480D-852A-7591A29B0FB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.ConsoleAppRefitExamples", "SSDLDotNetCore.ConsoleAppRefitExamples\SSDLDotNetCore.ConsoleAppRefitExamples.csproj", "{8CA24AD9-527D-4305-8F2C-24293EE2F272}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{6166DA76-2CC4-480D-852A-7591A29B0FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6166DA76-2CC4-480D-852A-7591A29B0FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6166DA76-2CC4-480D-852A-7591A29B0FB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CA24AD9-527D-4305-8F2C-24293EE2F272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CA24AD9-527D-4305-8F2C-24293EE2F272}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CA24AD9-527D-4305-8F2C-24293EE2F272}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CA24AD9-527D-4305-8F2C-24293EE2F272}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
