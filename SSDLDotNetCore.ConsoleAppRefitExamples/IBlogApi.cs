@@ -22,6 +22,9 @@ public interface IBlogApi
     [Put("/api/blog/{id}")]
     Task<string> UpdateBlog(int id, BlogModel blog);
 
+    [Patch("/api/blog/{id}")]
+    Task<string> PatchBlog(int id, BlogModel blog);
+
     [Delete("/api/blog/{id}")]
     Task<string> DeleteBlog(int id);
 }

@@ -14,11 +14,13 @@ namespace SSDLDotNetCore.ConsoleAppRefitExamples
 
         public async Task RunAsync()
         {
+
             await ReadAsync();
             //await EditAsync(1);
             //await EditAsync(100);
             //await CreateAsync("title", "author", "content");
             //await UpdateAsync(31, "title update", "author update", "content update");
+            //await PatchAsync(31, "title update2", "author update2", null);
             //await DeleteAsync(30);
         }
 
@@ -99,6 +101,19 @@ namespace SSDLDotNetCore.ConsoleAppRefitExamples
                 Console.WriteLine(ex.StatusCode.ToString());
                 Console.WriteLine(ex.Content);
             }
+        }
+
+        private async Task PatchAsync(int id, string title, string author, string content)
+        {
+            BlogModel blog = new BlogModel()
+            {
+                BlogTitle = title,
+                BlogAuthor = author,
+                BlogContent = content
+            };
+
+            string message = await service.PatchBlog(id, blog);
+            Console.WriteLine(message);
         }
 
         public async Task DeleteAsync(int id)
