@@ -35,16 +35,16 @@ namespace SSDLDotNetCore.WinFormsApp
 
         private void dgvData_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == (int)EnumFormControlType.Edit)
+            var BlogId = Convert.ToInt32(dgvData.Rows[e.RowIndex].Cells["colId"].Value);
+            if (e.ColumnIndex == (int)EnumFormControlType.Edit)
             {
-
+                FrmBlog frm = new FrmBlog(BlogId);
+                frm.ShowDialog();
             }
             else if (e.ColumnIndex == (int)EnumFormControlType.Delete)
             {
                 var dialogResult = MessageBox.Show("Are you sure want to delete?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult != DialogResult.Yes) return;
-
-                var BlogId = Convert.ToInt32(dgvData.Rows[e.RowIndex].Cells["colId"].Value);
+                if (dialogResult != DialogResult.Yes) return;                
 
                 DeleteBlog(BlogId);
                 BlogList();
