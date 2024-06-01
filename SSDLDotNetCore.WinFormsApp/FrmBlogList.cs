@@ -24,8 +24,40 @@ namespace SSDLDotNetCore.WinFormsApp
 
         private void FrmBlogList_Load(object sender, EventArgs e)
         {
-            List<BlogModel> lst =  _dapperService.Query<BlogModel>("select * from Tbl_Blog");
+            BlogList();
+        }
+
+        private void BlogList()
+        {
+            List<BlogModel> lst = _dapperService.Query<BlogModel>("Select * from Tbl_blog");
             dgvData.DataSource = lst;
+        }
+
+        private void dgvData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == (int)EnumFormControlType.Edit)
+            {
+
+            }
+            else if (e.ColumnIndex == (int)EnumFormControlType.Delete)
+            {
+                var dialogResult = MessageBox.Show("Are you sure want to delete?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult != DialogResult.Yes) return;
+
+                var BlogId = Convert.ToInt32(dgvData.Rows[e.RowIndex].Cells["colId"].Value);
+
+                DeleteBlog(BlogId);
+                BlogList();
+            }
+        }
+
+        private void DeleteBlog(int id)
+        {
+            var query = @"DELETE FROM [dbo].[Tbl_Blog] WHERE BlogId = @BlogId";
+
+            int result = _dapperService.Execute(query, new { BlogId = id });
+            var message = result > 0 ? "Deleting Successful." : "Deleting Failed.";
+            MessageBox.Show(message);
         }
     }
 }
