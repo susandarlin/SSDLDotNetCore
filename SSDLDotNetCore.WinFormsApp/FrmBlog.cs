@@ -16,7 +16,7 @@ namespace SSDLDotNetCore.WinFormsApp
         {
             // Must put other codes under InitializeComponent();
             InitializeComponent();
-            _dapperService = new DapperService(ConnectionString.sqlConnectionStringBuilder.ConnectionString);            
+            _dapperService = new DapperService(ConnectionString.sqlConnectionStringBuilder.ConnectionString);
         }
 
         public FrmBlog(int BlogId)
@@ -31,6 +31,9 @@ namespace SSDLDotNetCore.WinFormsApp
             txtTitle.Text = model.BlogTitle;
             txtAuthor.Text = model.BlogTitle;
             txtContent.Text = model.BlogContent;
+
+            btnSave.Visible = false;
+            btnUpdate.Visible = true;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -53,7 +56,7 @@ namespace SSDLDotNetCore.WinFormsApp
                 string message = result > 0 ? "Saving Successful." : "Saving Failed.";
                 var messageBoxIcon = result > 0 ? MessageBoxIcon.Information : MessageBoxIcon.Error;
                 MessageBox.Show(message, "Blog", MessageBoxButtons.OK, messageBoxIcon);
-                if(result > 0)
+                if (result > 0)
                 {
                     ClearControls();
                 }
@@ -71,6 +74,36 @@ namespace SSDLDotNetCore.WinFormsApp
             txtContent.Clear();
 
             txtTitle.Focus();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var item = new BlogModel
+                {
+                    BlogId = _blogId,
+                    BlogTitle = txtTitle.Text.Trim(),
+                    BlogAuthor = txtAuthor.Text.Trim(),
+                    BlogContent = txtContent.Text.Trim()
+                };
+
+                var query = @"UPDATE [dbo].[Tbl_Blog]
+                               SET [BlogTitle] = @BlogTitle
+                                  ,[BlogAuthor] = @BlogAuthor
+                                  ,[BlogContent] = @BlogContent
+                                Where BlogId = @BlogId";
+
+                var result = _dapperService.Execute(query, item);
+                var message = result > 0 ? "Updating Successful." : "Updating Failed.";
+                MessageBox.Show(message);
+
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

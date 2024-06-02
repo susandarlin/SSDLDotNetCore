@@ -40,6 +40,7 @@ namespace SSDLDotNetCore.WinFormsApp
             {
                 FrmBlog frm = new FrmBlog(BlogId);
                 frm.ShowDialog();
+                BlogList();
             }
             else if (e.ColumnIndex == (int)EnumFormControlType.Delete)
             {
