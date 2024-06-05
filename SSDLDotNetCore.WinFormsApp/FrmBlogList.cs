@@ -35,21 +35,55 @@ namespace SSDLDotNetCore.WinFormsApp
 
         private void dgvData_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1) return;
             var BlogId = Convert.ToInt32(dgvData.Rows[e.RowIndex].Cells["colId"].Value);
-            if (e.ColumnIndex == (int)EnumFormControlType.Edit)
-            {
-                FrmBlog frm = new FrmBlog(BlogId);
-                frm.ShowDialog();
-                BlogList();
-            }
-            else if (e.ColumnIndex == (int)EnumFormControlType.Delete)
-            {
-                var dialogResult = MessageBox.Show("Are you sure want to delete?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult != DialogResult.Yes) return;                
 
-                DeleteBlog(BlogId);
-                BlogList();
+            //#region If Case
+
+            //if (e.ColumnIndex == (int)EnumFormControlType.Edit)
+            //{
+            //    FrmBlog frm = new FrmBlog(BlogId);
+            //    frm.ShowDialog();
+            //    BlogList();
+            //}
+            //else if (e.ColumnIndex == (int)EnumFormControlType.Delete)
+            //{
+            //    var dialogResult = MessageBox.Show("Are you sure want to delete?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //    if (dialogResult != DialogResult.Yes) return;                
+
+            //    DeleteBlog(BlogId);
+            //    BlogList();
+            //}
+
+            //#endregion
+
+            #region Switch Case
+
+            var index = e.ColumnIndex;
+            EnumFormControlType enumFormControlType = (EnumFormControlType)index;
+            switch (enumFormControlType)
+            {
+                case EnumFormControlType.Edit:
+                    FrmBlog frm = new FrmBlog(BlogId);
+                    frm.ShowDialog();
+                    BlogList();
+                    break;
+
+                case EnumFormControlType.Delete:
+                    var dialogResult = MessageBox.Show("Are you sure want to delete?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult != DialogResult.Yes) return;
+
+                    DeleteBlog(BlogId);
+                    BlogList();
+                    break;
+
+            case EnumFormControlType.None:
+            default:
+                    MessageBox.Show("Invalid Case");
+                    break;
             }
+
+            #endregion
         }
 
         private void DeleteBlog(int id)
