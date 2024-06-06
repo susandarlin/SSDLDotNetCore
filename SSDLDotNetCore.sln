@@ -29,7 +29,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.ConsoleAppRe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.WinFormsApp", "SSDLDotNetCore.WinFormsApp\SSDLDotNetCore.WinFormsApp.csproj", "{AA31203E-3480-4E55-B649-D439830DDE69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.WinFormsAppSqlInjection", "SSDLDotNetCore.WinFormsAppSqlInjection\SSDLDotNetCore.WinFormsAppSqlInjection.csproj", "{AC2AC78B-F198-413E-9D38-D8FAD5D7A033}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.WinFormsAppSqlInjection", "SSDLDotNetCore.WinFormsAppSqlInjection\SSDLDotNetCore.WinFormsAppSqlInjection.csproj", "{AC2AC78B-F198-413E-9D38-D8FAD5D7A033}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.NLayer.UI", "SSDLDotNetCore.NLayer.UI\SSDLDotNetCore.NLayer.UI.csproj", "{63503FA5-DDB7-47FC-8706-E35215B23267}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.NLayer.BusinessLogic", "SSDLDotNetCore.NLayer.BusinessLogic\SSDLDotNetCore.NLayer.BusinessLogic.csproj", "{4CC33941-71DD-47C8-A1C6-AAFB85C5A884}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.NLayer.DataAccess", "SSDLDotNetCore.NLayer.DataAccess\SSDLDotNetCore.NLayer.DataAccess.csproj", "{007F0C8B-2121-4F00-88E2-A7975F819BD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +87,18 @@ Global
 		{AC2AC78B-F198-413E-9D38-D8FAD5D7A033}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC2AC78B-F198-413E-9D38-D8FAD5D7A033}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC2AC78B-F198-413E-9D38-D8FAD5D7A033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63503FA5-DDB7-47FC-8706-E35215B23267}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63503FA5-DDB7-47FC-8706-E35215B23267}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63503FA5-DDB7-47FC-8706-E35215B23267}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63503FA5-DDB7-47FC-8706-E35215B23267}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CC33941-71DD-47C8-A1C6-AAFB85C5A884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CC33941-71DD-47C8-A1C6-AAFB85C5A884}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CC33941-71DD-47C8-A1C6-AAFB85C5A884}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CC33941-71DD-47C8-A1C6-AAFB85C5A884}.Release|Any CPU.Build.0 = Release|Any CPU
+		{007F0C8B-2121-4F00-88E2-A7975F819BD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{007F0C8B-2121-4F00-88E2-A7975F819BD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{007F0C8B-2121-4F00-88E2-A7975F819BD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{007F0C8B-2121-4F00-88E2-A7975F819BD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
