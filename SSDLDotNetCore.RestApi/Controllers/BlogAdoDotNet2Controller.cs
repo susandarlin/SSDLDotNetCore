@@ -14,7 +14,15 @@ namespace SSDLDotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogAdoDotNet2Controller : ControllerBase
     {
-        private readonly AdoDotNetService _adoDotNetService = new AdoDotNetService(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+        //private readonly AdoDotNetService _adoDotNetService = new AdoDotNetService(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+
+        // Using Dependency Injection
+        private readonly AdoDotNetService _adoDotNetService;
+
+        public BlogAdoDotNet2Controller(AdoDotNetService adoDotNetService)
+        {
+            _adoDotNetService = adoDotNetService;
+        }
 
         [HttpGet]
         public IActionResult GetBlogs()

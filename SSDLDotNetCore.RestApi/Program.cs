@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using SSDLDotNetCore.RestApi.Db;
+using SSDLDotNetCore.Shared;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +10,19 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Dependency Injection
+string connectionString = builder.Configuration.GetConnectionString("DbConnection")!;
+
+builder.Services.AddDbContext<AppDbContext>(opt =>
+{
+    opt.UseSqlServer(connectionString);
+}, 
+ServiceLifetime.Transient,
+ServiceLifetime.Transient);
+
+builder.Services.AddScoped<AdoDotNetService>(n => new AdoDotNetService(connectionString));
+builder.Services.AddScoped<DapperService>(n => new DapperService(connectionString));
 
 var app = builder.Build();
 
