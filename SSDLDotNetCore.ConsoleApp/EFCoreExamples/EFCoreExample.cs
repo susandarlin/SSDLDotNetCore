@@ -7,9 +7,16 @@ using SSDLDotNetCore.ConsoleApp.Dtos;
 
 namespace SSDLDotNetCore.ConsoleApp.EFCoreExamples
 {
-    internal class EFCoreExample
+    public class EFCoreExample
     {
-        AppDbContext db = new AppDbContext();
+        private readonly AppDbContext db;
+
+        public EFCoreExample(AppDbContext appDbContext)
+        {
+            db = appDbContext;
+        }
+
+        //AppDbContext db = new AppDbContext();
         public void Run()
         {
             //Read();
