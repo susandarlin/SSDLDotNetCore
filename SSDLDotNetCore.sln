@@ -39,7 +39,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.NLayer.DataA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.MinimalApi", "SSDLDotNetCore.MinimalApi\SSDLDotNetCore.MinimalApi.csproj", "{884588C6-C632-429E-BF2C-813F59674306}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.MvcApp", "SSDLDotNetCore.MvcApp\SSDLDotNetCore.MvcApp.csproj", "{708441A6-D7C0-4A37-A4A9-F15F8FF4FCFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.MvcApp", "SSDLDotNetCore.MvcApp\SSDLDotNetCore.MvcApp.csproj", "{708441A6-D7C0-4A37-A4A9-F15F8FF4FCFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.MvcApp2", "SSDLDotNetCore.MvcApp2\SSDLDotNetCore.MvcApp2.csproj", "{F54BBFCC-9E5A-4D53-B16C-954F9BFE7420}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +113,10 @@ Global
 		{708441A6-D7C0-4A37-A4A9-F15F8FF4FCFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{708441A6-D7C0-4A37-A4A9-F15F8FF4FCFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{708441A6-D7C0-4A37-A4A9-F15F8FF4FCFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F54BBFCC-9E5A-4D53-B16C-954F9BFE7420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F54BBFCC-9E5A-4D53-B16C-954F9BFE7420}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F54BBFCC-9E5A-4D53-B16C-954F9BFE7420}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F54BBFCC-9E5A-4D53-B16C-954F9BFE7420}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
