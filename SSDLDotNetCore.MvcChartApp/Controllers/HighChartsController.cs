@@ -8,5 +8,10 @@ namespace SSDLDotNetCore.MvcChartApp.Controllers
         {
             return View();
         }
+
+        public IActionResult AreaChart()
+        {
+            return View();
+        }
     }
 }
