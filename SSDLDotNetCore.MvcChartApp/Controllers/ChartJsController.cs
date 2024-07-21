@@ -13,5 +13,11 @@ namespace SSDLDotNetCore.MvcChartApp.Controllers
         {
             return View();
         }
+
+        public IActionResult SteppedLineCharts()
+        {
+            return View();
+        }
+
     }
 }

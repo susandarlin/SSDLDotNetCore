@@ -1,0 +1,78 @@
+﻿<div>
+    <canvas id="myChart"></canvas>
+</div>
+
+@section scripts{
+    <script>
+        
+        var _seed = Date.now();
+        const data = {
+            labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6'],
+            datasets: [
+                {
+                    label: 'Dataset',
+                    data: numbers({ count: 6, min: -100, max: 100 }),
+                    borderColor: 'rgb(255, 99, 132)',
+                    fill: false,
+                    stepped: true,
+                }
+            ]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                interaction: {
+                    intersect: false,
+                    axis: 'x'
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: (ctx) => 'Step ' + ctx.chart.data.datasets[0].stepped + ' Interpolation',
+                    }
+                }
+            }
+        };
+
+        function numbers(config) {
+            var cfg = config || {};
+            var min = valueOrDefault(cfg.min, 0);
+            var max = valueOrDefault(cfg.max, 100);
+            var from = valueOrDefault(cfg.from, []);
+            var count = valueOrDefault(cfg.count, 8);
+            var decimals = valueOrDefault(cfg.decimals, 8);
+            var continuity = valueOrDefault(cfg.continuity, 1);
+            var dfactor = Math.pow(10, decimals) || 0;
+            var data = [];
+            var i, value;
+
+            for (i = 0; i < count; ++i) {
+                value = (from[i] || 0) + this.rand(min, max);
+                if (this.rand() <= continuity) {
+                    data.push(Math.round(dfactor * value) / dfactor);
+                } else {
+                    data.push(null);
+                }
+            }
+
+            return data;
+        }
+
+        function rand(min, max) {
+            min = valueOrDefault(min, 0);
+            max = valueOrDefault(max, 0);
+            _seed = (_seed * 9301 + 49297) % 233280;
+            return min + (_seed / 233280) * (max - min);
+        }
+
+        function valueOrDefault(value, defaultValue) {
+            return typeof value === 'undefined' ? defaultValue : value;
+        }
+
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, config);
+    </script>
+}
