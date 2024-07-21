@@ -13,5 +13,10 @@ namespace SSDLDotNetCore.MvcChartApp.Controllers
         {
             return View();
         }
+
+        public IActionResult ColumnWithNegativeValues()
+        {
+            return View();
+        }
     }
 }
