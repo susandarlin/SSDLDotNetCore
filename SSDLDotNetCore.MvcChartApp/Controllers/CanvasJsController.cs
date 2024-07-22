@@ -23,5 +23,10 @@ namespace SSDLDotNetCore.MvcChartApp.Controllers
         {
             return View();
         }
+
+        public IActionResult BubbleCharts()
+        {
+            return View();
+        }
     }
 }
