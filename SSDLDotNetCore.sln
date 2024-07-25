@@ -47,7 +47,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.MvcChartApp"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.ConsoleAppLogging", "SSDLDotNetCore.ConsoleAppLogging\SSDLDotNetCore.ConsoleAppLogging.csproj", "{BDD67DC0-1B3D-4C80-815B-E4FE11C424DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.RealtimeChatApp", "SSDLDotNetCore.RealtimeChatApp\SSDLDotNetCore.RealtimeChatApp.csproj", "{BFC78A86-9EDE-4920-94F5-04C458EE4F0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.RealtimeChatApp", "SSDLDotNetCore.RealtimeChatApp\SSDLDotNetCore.RealtimeChatApp.csproj", "{BFC78A86-9EDE-4920-94F5-04C458EE4F0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.ConsoleAppPagination", "SSDLDotNetCore.ConsoleAppPagination\SSDLDotNetCore.ConsoleAppPagination.csproj", "{7B425BCD-C55C-4E0E-AF9B-26F011572A74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +137,10 @@ Global
 		{BFC78A86-9EDE-4920-94F5-04C458EE4F0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFC78A86-9EDE-4920-94F5-04C458EE4F0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFC78A86-9EDE-4920-94F5-04C458EE4F0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B425BCD-C55C-4E0E-AF9B-26F011572A74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B425BCD-C55C-4E0E-AF9B-26F011572A74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B425BCD-C55C-4E0E-AF9B-26F011572A74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B425BCD-C55C-4E0E-AF9B-26F011572A74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
