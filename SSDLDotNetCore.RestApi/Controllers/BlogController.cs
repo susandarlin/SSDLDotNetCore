@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SSDLDotNetCore.RestApi.Db;
+using SSDLDotNetCore.RestApi.Models;
 
 namespace SSDLDotNetCore.RestApi.Controllers
 {
@@ -33,6 +34,35 @@ namespace SSDLDotNetCore.RestApi.Controllers
         {
             var lst = _context.Blogs.ToList();
             return Ok(lst);
+        }
+
+        [HttpGet("{pageNo}/{pageSize}")]
+        [HttpGet("PageNo/{pageNo}/pageSize/{pageSize}")]
+        public IActionResult Read(int pageNo, int pageSize)
+        {
+            int rowCount = _context.Blogs.Count();
+
+            int pageCount = rowCount / pageSize;
+            if (rowCount % pageSize > 0)
+                pageCount++;
+
+            if (pageNo > pageCount)
+                return BadRequest(new { Message = "Invalid PageNo." });
+
+            var lst = _context.Blogs
+                .OrderByDescending(x => x.BlogId)
+                .Skip((pageNo - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();            
+
+            BlogResponseModel model = new();
+            model.Data = lst;
+            model.PageNo = pageNo;
+            model.PageSize = pageSize;
+            model.PageCount = pageCount;
+            //model.IsEndOfPage = pageNo == pageCount;
+
+            return Ok(model);
         }
 
         [HttpPost]
