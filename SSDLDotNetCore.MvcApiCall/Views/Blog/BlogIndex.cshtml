@@ -1,0 +1,151 @@
+﻿@model BlogResponseModel
+
+@{
+    int count = 0;
+    int PageCount = Model.PageCount;
+    int PageSize = Model.PageSize;
+    int PageNo = Model.PageNo;
+
+    string GetPageUrl(int pageNo)
+    {
+        return $"/Blog/Index?pageNo={pageNo}&pageSize={PageSize}";
+    }
+}
+<table class="table table-responsive">
+    <thead>
+        <th></th>
+        <th>No.</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Content</th>
+    </thead>
+    <tbody>
+        @foreach (BlogModel item in Model.Data)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-warning" href="/Blog/Edit/@item.BlogId">Edit</a>
+                    <a class="btn btn-danger" href="/Blog/Delete/@item.BlogId">Delete</a>
+                </td>
+                <td>@(++count + (PageNo -1) * PageSize)</td>
+                <td>@item.BlogTitle</td>
+                <td>@item.BlogAuthor</td>
+                <td>@item.BlogContent</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav aria-label="...">
+    <ul class="pagination">
+        @* <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li> *@
+
+        @if(PageNo == 1)
+        {
+            <li class="page-item disabled">
+                <a class="page-link">Previous</a>
+            </li>
+        }
+        else
+        {
+           <li class="page-item">
+                <a class="page-link" href="@GetPageUrl(PageNo - 1)">Previous</a>
+            </li> 
+        }
+
+        @if (PageCount <= 9)
+        {
+            for(var i = 1; i <= PageCount; i++)
+            {
+                if(PageNo == i)
+                {
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="@GetPageUrl(i)">@i</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@GetPageUrl(i)">@i</a>
+                    </li>
+                }
+            }
+        }
+        else
+        {
+            if(PageNo <= 3 || PageCount - 2 <= PageNo)
+            {
+                for (var i = 1; i <= 4; i++)
+                {
+                    if (PageNo == i)
+                    {
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="@GetPageUrl(i)">@i</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@GetPageUrl(i)">@i</a>
+                        </li>
+                    }
+                }
+                <li class="page-item"><a class="page-link" href="#">...</a></li>
+                for (var i = PageCount - 3; i <= PageCount; i++)
+                {
+                    if (PageNo == i)
+                    {
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="@GetPageUrl(i)">@i</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@GetPageUrl(i)">@i</a>
+                        </li>
+                    }
+                }
+            }
+            else
+            {
+                <li class="page-item"><a class="page-link" href="@GetPageUrl(1)">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">...</a></li>
+                for (var i = PageNo - 2; i <= PageNo + 2; i++)
+                {
+                    if (PageNo == i)
+                    {
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="@GetPageUrl(i)">@i</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@GetPageUrl(i)">@i</a>
+                        </li>
+                    }
+                }
+                <li class="page-item"><a class="page-link" href="#">...</a></li>
+                <li class="page-item"><a class="page-link" href="@GetPageUrl(PageCount)">@PageCount</a></li>
+            }
+        }
+
+        @if (PageNo == PageCount)
+        {
+            <li class="page-item disabled">
+                <a class="page-link">Next</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item">
+                <a class="page-link" href="@GetPageUrl(PageNo + 1)">Next</a>
+            </li>
+        }
+    </ul>
+</nav>
