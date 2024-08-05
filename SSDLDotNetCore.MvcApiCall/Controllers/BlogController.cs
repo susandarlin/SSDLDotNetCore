@@ -42,4 +42,25 @@ public class BlogController : Controller
         await _httpClient.PostAsync("/api/blog", content);
         return Redirect("/Blog");
     }
+
+    [ActionName("Edit")]
+    public async Task<IActionResult> BlogEdit(int id)
+    {
+        var response = await _httpClient.GetAsync($"/api/blog/{id}");
+        if(!response.IsSuccessStatusCode)
+        {
+            return Redirect("/Blog");
+        }
+        var jsonStr = await response.Content.ReadAsStringAsync();
+        BlogModel model = JsonConvert.DeserializeObject<BlogModel>(jsonStr)!;
+        return View("BlogEdit", model);
+    }
+
+    [ActionName("Update")]
+    public async Task<IActionResult> BlogUpdateAsync(int id, BlogModel blog)
+    {
+        HttpContent content = new StringContent(JsonConvert.SerializeObject(blog), Encoding.UTF8, Application.Json);
+        await _httpClient.PutAsync($"/api/Blog/{id}", content);
+        return Redirect("/Blog");
+    }
 }
