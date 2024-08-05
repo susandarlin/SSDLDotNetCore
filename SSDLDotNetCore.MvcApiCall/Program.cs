@@ -6,7 +6,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<HttpClient>();
 builder.Services.AddScoped(n => new HttpClient()
 {
-    BaseAddress = new Uri(builder.Configuration.GetValue<string>("ApiUrl"))
+    BaseAddress = new Uri(builder.Configuration.GetValue<string>("ApiUrl")!)
 });
 
 var app = builder.Build();

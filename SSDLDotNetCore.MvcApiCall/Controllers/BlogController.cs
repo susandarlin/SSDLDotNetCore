@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SSDLDotNetCore.MvcApiCall.Models;
+using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SSDLDotNetCore.MvcPagination.Controllers;
 
@@ -24,5 +26,20 @@ public class BlogController : Controller
             model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr)!;
         }
         return View("BlogIndex", model);
+    }
+
+    [ActionName("Create")]
+    public IActionResult BlogCreate(BlogModel blog)
+    {
+        return View("BlogCreate");
+    }
+
+    [HttpPost]
+    [ActionName("Save")]
+    public async Task<IActionResult> BlogSave(BlogModel blog)
+    {
+        HttpContent content = new StringContent(JsonConvert.SerializeObject(blog), Encoding.UTF8, Application.Json);
+        await _httpClient.PostAsync("/api/blog", content);
+        return Redirect("/Blog");
     }
 }
