@@ -1,13 +1,22 @@
+using Microsoft.Extensions.DependencyInjection;
+using RestSharp;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<HttpClient>();
-builder.Services.AddScoped(n => new HttpClient()
-{
-    BaseAddress = new Uri(builder.Configuration.GetValue<string>("ApiUrl")!)
-});
+/* Http Client API Call */
+//builder.Services.AddScoped<HttpClient>();
+//builder.Services.AddScoped(n => new HttpClient()
+//{
+//    BaseAddress = new Uri(builder.Configuration.GetValue<string>("ApiUrl")!)
+//});
+
+
+/* Rest Client API Call */
+builder.Services.AddScoped(n => new RestClient(builder.Configuration.GetValue<string>("ApiUrl")!));
+
 
 var app = builder.Build();
 
