@@ -63,4 +63,11 @@ public class BlogController : Controller
         await _httpClient.PutAsync($"/api/Blog/{id}", content);
         return Redirect("/Blog");
     }
+
+    [ActionName("Delete")]
+    public async Task<IActionResult> BlogDelete(int id)
+    {
+        await _httpClient.DeleteAsync($"/api/Blog/{id}");
+        return Redirect("/Blog");
+    }
 }
