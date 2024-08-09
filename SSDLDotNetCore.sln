@@ -53,7 +53,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.ConsoleAppPa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.MvcPagination", "SSDLDotNetCore.MvcPagination\SSDLDotNetCore.MvcPagination.csproj", "{FFDECFA6-8B08-4E16-8A37-A1BF9FDE059A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.MvcApiCall", "SSDLDotNetCore.MvcApiCall\SSDLDotNetCore.MvcApiCall.csproj", "{B9526AD9-3717-453F-A42E-FD32C6EBB166}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.MvcApiCall", "SSDLDotNetCore.MvcApiCall\SSDLDotNetCore.MvcApiCall.csproj", "{B9526AD9-3717-453F-A42E-FD32C6EBB166}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.MinimalApi2", "SSDLDotNetCore.MinimalApi2\SSDLDotNetCore.MinimalApi2.csproj", "{80FB4D5A-522A-4B49-86A0-DF9A41F0637F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -153,6 +155,10 @@ Global
 		{B9526AD9-3717-453F-A42E-FD32C6EBB166}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9526AD9-3717-453F-A42E-FD32C6EBB166}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9526AD9-3717-453F-A42E-FD32C6EBB166}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80FB4D5A-522A-4B49-86A0-DF9A41F0637F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80FB4D5A-522A-4B49-86A0-DF9A41F0637F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80FB4D5A-522A-4B49-86A0-DF9A41F0637F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80FB4D5A-522A-4B49-86A0-DF9A41F0637F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
