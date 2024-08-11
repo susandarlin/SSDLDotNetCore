@@ -55,9 +55,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.MvcPaginatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.MvcApiCall", "SSDLDotNetCore.MvcApiCall\SSDLDotNetCore.MvcApiCall.csproj", "{B9526AD9-3717-453F-A42E-FD32C6EBB166}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.MinimalApi2", "SSDLDotNetCore.MinimalApi2\SSDLDotNetCore.MinimalApi2.csproj", "{80FB4D5A-522A-4B49-86A0-DF9A41F0637F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.MinimalApi2", "SSDLDotNetCore.MinimalApi2\SSDLDotNetCore.MinimalApi2.csproj", "{80FB4D5A-522A-4B49-86A0-DF9A41F0637F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.RealtimeChartApp", "SSDLDotNetCore.RealtimeChartApp\SSDLDotNetCore.RealtimeChartApp.csproj", "{034ADFCD-B34A-4E3E-B360-1A6BDC424029}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.RealtimeChartApp", "SSDLDotNetCore.RealtimeChartApp\SSDLDotNetCore.RealtimeChartApp.csproj", "{034ADFCD-B34A-4E3E-B360-1A6BDC424029}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.ConsoleAppEFCore", "SSDLDotNetCore.ConsoleAppEFCore\SSDLDotNetCore.ConsoleAppEFCore.csproj", "{FF07A7D2-2B54-45AC-9CD2-51D915C8969C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.ConsoleAppEFCore.Databases", "SSDLDotNetCore.ConsoleAppEFCore.Databases\SSDLDotNetCore.ConsoleAppEFCore.Databases.csproj", "{2280FFC6-D75C-47F7-816D-02B631AB0183}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -165,6 +169,14 @@ Global
 		{034ADFCD-B34A-4E3E-B360-1A6BDC424029}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{034ADFCD-B34A-4E3E-B360-1A6BDC424029}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{034ADFCD-B34A-4E3E-B360-1A6BDC424029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF07A7D2-2B54-45AC-9CD2-51D915C8969C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF07A7D2-2B54-45AC-9CD2-51D915C8969C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF07A7D2-2B54-45AC-9CD2-51D915C8969C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF07A7D2-2B54-45AC-9CD2-51D915C8969C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2280FFC6-D75C-47F7-816D-02B631AB0183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2280FFC6-D75C-47F7-816D-02B631AB0183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2280FFC6-D75C-47F7-816D-02B631AB0183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2280FFC6-D75C-47F7-816D-02B631AB0183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
