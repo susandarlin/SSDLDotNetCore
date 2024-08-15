@@ -63,7 +63,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.ConsoleAppEF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.ConsoleAppEFCore.Databases", "SSDLDotNetCore.ConsoleAppEFCore.Databases\SSDLDotNetCore.ConsoleAppEFCore.Databases.csproj", "{2280FFC6-D75C-47F7-816D-02B631AB0183}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.MvcDesignApp", "SSDLDotNetCore.MvcDesignApp\SSDLDotNetCore.MvcDesignApp.csproj", "{FDF62753-2B0F-484A-88DD-633CF59106B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.MvcDesignApp", "SSDLDotNetCore.MvcDesignApp\SSDLDotNetCore.MvcDesignApp.csproj", "{FDF62753-2B0F-484A-88DD-633CF59106B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.BlazorWasm", "SSDLDotNetCore.BlazorWasm\SSDLDotNetCore.BlazorWasm.csproj", "{F409C7A3-DE95-42CA-88AF-61A305ADBAE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -183,6 +185,10 @@ Global
 		{FDF62753-2B0F-484A-88DD-633CF59106B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDF62753-2B0F-484A-88DD-633CF59106B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDF62753-2B0F-484A-88DD-633CF59106B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F409C7A3-DE95-42CA-88AF-61A305ADBAE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F409C7A3-DE95-42CA-88AF-61A305ADBAE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F409C7A3-DE95-42CA-88AF-61A305ADBAE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F409C7A3-DE95-42CA-88AF-61A305ADBAE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
