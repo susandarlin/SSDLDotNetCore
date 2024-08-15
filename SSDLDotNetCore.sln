@@ -59,9 +59,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.MinimalApi2"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.RealtimeChartApp", "SSDLDotNetCore.RealtimeChartApp\SSDLDotNetCore.RealtimeChartApp.csproj", "{034ADFCD-B34A-4E3E-B360-1A6BDC424029}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.ConsoleAppEFCore", "SSDLDotNetCore.ConsoleAppEFCore\SSDLDotNetCore.ConsoleAppEFCore.csproj", "{FF07A7D2-2B54-45AC-9CD2-51D915C8969C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.ConsoleAppEFCore", "SSDLDotNetCore.ConsoleAppEFCore\SSDLDotNetCore.ConsoleAppEFCore.csproj", "{FF07A7D2-2B54-45AC-9CD2-51D915C8969C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.ConsoleAppEFCore.Databases", "SSDLDotNetCore.ConsoleAppEFCore.Databases\SSDLDotNetCore.ConsoleAppEFCore.Databases.csproj", "{2280FFC6-D75C-47F7-816D-02B631AB0183}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.ConsoleAppEFCore.Databases", "SSDLDotNetCore.ConsoleAppEFCore.Databases\SSDLDotNetCore.ConsoleAppEFCore.Databases.csproj", "{2280FFC6-D75C-47F7-816D-02B631AB0183}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.MvcDesignApp", "SSDLDotNetCore.MvcDesignApp\SSDLDotNetCore.MvcDesignApp.csproj", "{FDF62753-2B0F-484A-88DD-633CF59106B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -177,6 +179,10 @@ Global
 		{2280FFC6-D75C-47F7-816D-02B631AB0183}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2280FFC6-D75C-47F7-816D-02B631AB0183}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2280FFC6-D75C-47F7-816D-02B631AB0183}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDF62753-2B0F-484A-88DD-633CF59106B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDF62753-2B0F-484A-88DD-633CF59106B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDF62753-2B0F-484A-88DD-633CF59106B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDF62753-2B0F-484A-88DD-633CF59106B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
