@@ -1,6 +1,7 @@
 ﻿@page "/blog"
 @inject HttpClient httpClient
 @inject NavigationManager nav
+@inject IJSRuntime jsRuntime
 
 <PageTitle>Blog List</PageTitle>
 
@@ -45,6 +46,7 @@
                 <tr>
                     <td>
                         <button type="button" @onclick="() => Edit(item.BlogId)" class="btn btn-outline-warning">Edit</button>
+                        <button type="button" @onclick="() => Delete(item.BlogId)" class="btn btn-outline-danger">Delete</button>
                     </td>
                     <td>@item.BlogId</td>
                     <td>@item.BlogTitle</td>
@@ -113,5 +115,18 @@
     private void Back()
     {
         _blog = null;
+    }
+
+    private async Task Delete(int id)
+    {
+        var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Are you sure want to Delete?");
+        if (!confirm) return;
+
+        var response = await httpClient.DeleteAsync($"api/blog/{id}");
+        if (!response.IsSuccessStatusCode) return;
+
+        var message = await response.Content.ReadAsStringAsync();
+        await jsRuntime.InvokeVoidAsync("alert", message);
+        await List();
     }
 }
