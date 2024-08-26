@@ -1,17 +1,38 @@
 ﻿@page "/blog"
 @inject HttpClient httpClient
+@inject NavigationManager nav
 
 <PageTitle>Blog List</PageTitle>
 
 <h3>Blog List Page</h3>
 
 <NavLink href="/blog/create" class="btn btn-outline-success">New</NavLink>
+<br />
+
+@if(_blog is not null)
+{
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" @bind-value="_blog.BlogTitle" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Author</label>
+        <input type="text" class="form-control" @bind-value="_blog.BlogAuthor" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Content</label>
+        <input type="text" class="form-control" @bind-value="_blog.BlogContent" />
+    </div>
+    <buton type="button" class="btn btn-outline-dark" @onclick="Back">Back</buton>
+    <button type="button" class="btn btn-outline-success" @onclick="Update">Update</button>
+}
 
 @if (_blogs is not null)
 {
     <table class="table table-responsive">
         <thead>
             <tr>
+                <th></th>
                 <th>Id</th>
                 <th>Title</th>
                 <th>Author</th>
@@ -22,6 +43,9 @@
             @foreach (var item in _blogs)
             {
                 <tr>
+                    <td>
+                        <button type="button" @onclick="() => Edit(item.BlogId)" class="btn btn-outline-warning">Edit</button>
+                    </td>
                     <td>@item.BlogId</td>
                     <td>@item.BlogTitle</td>
                     <td>@item.BlogAuthor</td>
@@ -34,8 +58,14 @@
 
 @code {
     private List<BlogModel>? _blogs = null;
+    private BlogModel? _blog = null;
 
     protected override async Task OnInitializedAsync()
+    {
+        await List();
+    }
+
+    private async Task List()
     {
         var response = await httpClient.GetAsync("api/blog");
         if (response.IsSuccessStatusCode)
@@ -53,5 +83,35 @@
         {
 
         }
+    }
+
+    private async Task Edit(int id)
+    {
+        var response = await httpClient.GetAsync($"api/blog/{id}");
+        if (!response.IsSuccessStatusCode)
+        {
+            nav.NavigateTo("/blog");            
+        }
+        var jsonStr = await response.Content.ReadAsStringAsync();
+        _blog = JsonConvert.DeserializeObject<BlogModel>(jsonStr)!;
+    }
+
+    private async Task Update()
+    {
+        var jsonBlog = JsonConvert.SerializeObject(_blog);
+        var content = new StringContent(jsonBlog, Encoding.UTF8, Application.Json);
+        var response = await httpClient.PutAsync($"api/blog/{_blog.BlogId}", content);
+        if(response.IsSuccessStatusCode)
+        {
+            var jsonStr = response.Content.ReadAsStringAsync();
+            Console.WriteLine(jsonStr);
+            _blog = null;
+            await List();
+        }
+    }
+
+    private void Back()
+    {
+        _blog = null;
     }
 }
