@@ -43,8 +43,10 @@
         <tbody>
             @foreach (var item in _blogs)
             {
+                var editLine = $"/blog/edit/{item.BlogId}";
                 <tr>
                     <td>
+                        <NavLink href="@editLine" class="btn btn-outline-dark">Edit</NavLink>
                         <button type="button" @onclick="() => Edit(item.BlogId)" class="btn btn-outline-warning">Edit</button>
                         <button type="button" @onclick="() => Delete(item.BlogId)" class="btn btn-outline-danger">Delete</button>
                     </td>
