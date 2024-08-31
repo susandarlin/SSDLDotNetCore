@@ -1,8 +1,11 @@
 ﻿@page "/blog"
-@using SSDLDotNetCore.BlazorServer.Models
 @inject AppDbContext db
 
+<PageTitle>Blog List</PageTitle>
+
 <h3>Blog List</h3>
+
+<a href="/blog/create" class="btn btn-outline-success">New</a>
 
 @if(_blog is not null)
 {
@@ -32,11 +35,19 @@
 @code {
     private List<BlogModel>? _blog;
 
+    // protected override Task OnInitializedAsync()
+    // {
+    //     _blog = db.Blog.ToList();
+    //     // No need => StateHasChanged();
+    // }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            _blog = db.Blog.ToList();
+            _blog = db.Blog
+                .OrderByDescending(x => x.BlogId)
+                .ToList();
             StateHasChanged();
         }
     }

@@ -69,7 +69,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.BlazorWasm",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.BlazorWasm2", "SSDLDotNetCore.BlazorWasm2\SSDLDotNetCore.BlazorWasm2.csproj", "{212D6791-1A62-4771-97BB-033B7305E809}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.BlazorServer", "SSDLDotNetCore.BlazorServer\SSDLDotNetCore.BlazorServer.csproj", "{2B32A9A3-C805-4E9F-90D1-5FD57506B976}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.BlazorServer", "SSDLDotNetCore.BlazorServer\SSDLDotNetCore.BlazorServer.csproj", "{2B32A9A3-C805-4E9F-90D1-5FD57506B976}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
