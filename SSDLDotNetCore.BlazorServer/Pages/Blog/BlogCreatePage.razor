@@ -2,6 +2,7 @@
 @inject AppDbContext db
 @inject IJSRuntime jsRuntime
 @using SSDLDotNetCore.BlazorServer.Models
+@inject NavigationManager nav
 
 <PageTitle>New Blog</PageTitle>
 <h3>New Blog</h3>
@@ -30,5 +31,6 @@
         var result = db.SaveChanges();
         await jsRuntime.InvokeVoidAsync("alert", result > 0 ? "Saving Successful." : "Saving Failed.");
         _blog = new BlogModel();
+        nav.NavigateTo("/blog");
     }
 }

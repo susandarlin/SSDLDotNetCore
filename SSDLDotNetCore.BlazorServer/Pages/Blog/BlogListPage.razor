@@ -1,6 +1,7 @@
 ﻿@page "/blog"
 @using Microsoft.EntityFrameworkCore
 @inject AppDbContext db
+@inject IJSRuntime jsRuntime
 
 <PageTitle>Blog List</PageTitle>
 
@@ -27,6 +28,7 @@
             <tr>
                 <td>
                     <NavLink href="@editLink" class="btn btn-outline-primary">Edit</NavLink>
+                    <button type="button" class="btn btn-outline-danger" @onclick="() => Delete(item.BlogId)">Delete</button>
                 </td>
                 <td>@item.BlogId</td>
                 <td>@item.BlogTitle</td>
@@ -51,10 +53,33 @@
     {
         if (firstRender)
         {
-            _blog = await db.Blog
+            await List();
+        }
+    }
+
+    private async Task List()
+    {
+        _blog = await db.Blog
                 .OrderByDescending(x => x.BlogId)
                 .ToListAsync();
-            StateHasChanged();
+        StateHasChanged();
+    }
+
+    private async Task Delete(int id)
+    {
+        var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Are you sure want to delete?");
+        if(!confirm) return;
+
+        var item = await db.Blog.FirstOrDefaultAsync(x => x.BlogId == id);
+        if (item is null)
+        {
+            await jsRuntime.InvokeVoidAsync("alert", "No data found.");
+            return;
         }
+
+        db.Entry(item).State = EntityState.Deleted;
+        var result = await db.SaveChangesAsync();
+        await jsRuntime.InvokeVoidAsync("alert", result > 0 ? "Deleting Successful." : "Deleting Failed.");
+        await List();
     }
 }
