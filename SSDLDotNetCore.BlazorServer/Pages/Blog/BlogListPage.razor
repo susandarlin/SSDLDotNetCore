@@ -1,4 +1,5 @@
 ﻿@page "/blog"
+@using Microsoft.EntityFrameworkCore
 @inject AppDbContext db
 
 <PageTitle>Blog List</PageTitle>
@@ -12,6 +13,7 @@
 <table class="table table-responsive">
     <thead>
         <tr>
+            <th></th>
             <th>Id</th>
             <th>Title</th>
             <th>Author</th>
@@ -20,8 +22,12 @@
     </thead>
     @foreach (var item in _blog)
     {
-        <tbody>
+            var editLink = $"/blog/edit/{item.BlogId}";
+            <tbody>
             <tr>
+                <td>
+                    <NavLink href="@editLink" class="btn btn-outline-primary">Edit</NavLink>
+                </td>
                 <td>@item.BlogId</td>
                 <td>@item.BlogTitle</td>
                 <td>@item.BlogAuthor</td>
@@ -45,9 +51,9 @@
     {
         if (firstRender)
         {
-            _blog = db.Blog
+            _blog = await db.Blog
                 .OrderByDescending(x => x.BlogId)
-                .ToList();
+                .ToListAsync();
             StateHasChanged();
         }
     }

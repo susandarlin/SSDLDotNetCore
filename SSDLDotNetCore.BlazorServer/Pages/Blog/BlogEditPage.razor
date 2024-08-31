@@ -1,0 +1,60 @@
+﻿@page "/blog/edit/{id:int}"
+@using Microsoft.EntityFrameworkCore
+@inject AppDbContext db
+@inject IJSRuntime jsRuntime
+@inject NavigationManager nav
+
+<h3>Blog Edit</h3>
+
+@if (_blog is not null)
+{
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" @bind-value="_blog.BlogTitle">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Author</label>
+        <input type="text" class="form-control" @bind-value="_blog.BlogAuthor">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Content</label>
+        <input type="text" class="form-control" @bind-value="_blog.BlogContent">
+    </div>
+    <NavLink href="/blog" class="btn btn-outline-dark">Back</NavLink>
+    <button type="button" class="btn btn-warning" @onclick="Update">Update</button>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private BlogModel _blog = null;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _blog = await db.Blog.FirstOrDefaultAsync(x => x.BlogId == Id);
+            StateHasChanged();
+        }
+    }
+
+    public async Task Update()
+    {
+        var item = await db.Blog.FirstOrDefaultAsync(x => x.BlogId == Id);
+        if (item is null)
+        {
+            await jsRuntime.InvokeVoidAsync("alert", "No data not found.");
+            nav.NavigateTo("/blog");
+        }
+
+        item.BlogTitle = _blog.BlogTitle;
+        item.BlogAuthor = _blog.BlogAuthor;
+        item.BlogContent = _blog.BlogContent;
+
+        db.Entry(item).State = EntityState.Modified;
+        var result = await db.SaveChangesAsync();
+        await jsRuntime.InvokeVoidAsync("alert", result > 0 ? "Updating Successful." : "Updating Failed.");
+        nav.NavigateTo("/blog");
+    }
+}
