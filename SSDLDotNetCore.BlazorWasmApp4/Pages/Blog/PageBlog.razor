@@ -1,0 +1,59 @@
+﻿@page "/blog"
+@using Newtonsoft.Json
+@inject HttpClient HttpClient
+<h3>Blog</h3>
+
+@if(blogs is not null)
+{
+    int count = 0;
+    <table class="table">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in blogs)
+            {
+                <tr>
+                    <td>@(++count)</td>
+                    <td>@item.BlogId</td>
+                    <td>@item.BlogTitle</td>
+                    <td>@item.BlogAuthor</td>
+                    <td>@item.BlogContent</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private readonly string apiEndpoint = "api/Blog/";
+    private List<BlogModel> blogs = new List<BlogModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await List();
+    }
+
+    public async Task List()
+    {
+        var response = await HttpClient.GetAsync(apiEndpoint);
+        if(response.IsSuccessStatusCode)
+        {
+            var json = await response.Content.ReadAsStringAsync();
+            blogs = JsonConvert.DeserializeObject<List<BlogModel>>(json)!;
+        }
+    }
+    public class BlogModel
+    {
+        public int BlogId { get; set; }
+        public string BlogTitle { get; set; }
+        public string BlogAuthor { get; set; }
+        public string BlogContent { get; set; }
+    }
+}
