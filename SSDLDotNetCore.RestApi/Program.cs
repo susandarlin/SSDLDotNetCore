@@ -11,7 +11,9 @@ builder.Services.AddCors(options =>
                         policy =>
                         {
                             policy.WithOrigins("https://localhost:7175",
-                                                "http://localhost:5281");
+                                                "http://localhost:5281")
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
                         });
 });
 // Add services to the container.

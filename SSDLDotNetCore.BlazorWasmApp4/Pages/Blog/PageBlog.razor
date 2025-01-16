@@ -1,7 +1,25 @@
 ﻿@page "/blog"
 @using Newtonsoft.Json
+@using System.Text
+@using static System.Net.Mime.MediaTypeNames
 @inject HttpClient HttpClient
+@inject IJSRuntime JsRuntime
+
 <h3>Blog</h3>
+
+<div class="mb-3">
+    <label class="form-label">Title</label>
+    <input type="text" class="form-control" @bind-value="requestModel.BlogTitle" />
+</div>
+<div class="mb-3">
+    <label class="form-label">Author</label>
+    <input type="text" class="form-control" @bind-value="requestModel.BlogAuthor" />
+</div>
+<div class="mb-3">
+    <label class="form-label">Content</label>
+    <input type="text" class="form-control" @bind-value="requestModel.BlogContent" />
+</div>
+<button type="button" class="btn btn-success" @onclick="Save">Save</button>
 
 @if(blogs is not null)
 {
@@ -32,6 +50,7 @@
 }
 
 @code {
+    private BlogModel requestModel = new();
     private readonly string apiEndpoint = "api/Blog/";
     private List<BlogModel> blogs = new List<BlogModel>();
 
@@ -49,6 +68,21 @@
             blogs = JsonConvert.DeserializeObject<List<BlogModel>>(json)!;
         }
     }
+
+    public async Task Save()
+    {
+        string blogJson = JsonConvert.SerializeObject(requestModel);
+        var httpContent = new StringContent(blogJson, Encoding.UTF8, Application.Json);
+        var response = await HttpClient.PostAsync(apiEndpoint, httpContent);
+        if(response.IsSuccessStatusCode)
+        {
+            var message = await response.Content.ReadAsStringAsync();
+            await JsRuntime.InvokeVoidAsync("alert", message);
+            requestModel = new();
+            await List();
+        }
+    }
+
     public class BlogModel
     {
         public int BlogId { get; set; }
