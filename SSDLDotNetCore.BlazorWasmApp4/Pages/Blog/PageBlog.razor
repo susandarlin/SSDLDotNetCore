@@ -19,7 +19,15 @@
     <label class="form-label">Content</label>
     <input type="text" class="form-control" @bind-value="requestModel.BlogContent" />
 </div>
-<button type="button" class="btn btn-success" @onclick="Save">Save</button>
+
+@if(requestModel.BlogId == 0)
+{
+    <button type="button" class="btn btn-success" @onclick="Save">Save</button>
+}
+else if(requestModel.BlogId > 0)
+{
+    <button type="button" class="btn btn-success" @onclick="Update">Update</button>
+}
 
 @if(blogs is not null)
 {
@@ -38,6 +46,9 @@
             @foreach(var item in blogs)
             {
                 <tr>
+                    <td>
+                        <button type="text" class="btn btn-primary" @onclick="() => Edit(item.BlogId)">Edit</button>
+                    </td>
                     <td>@(++count)</td>
                     <td>@item.BlogId</td>
                     <td>@item.BlogTitle</td>
@@ -74,6 +85,30 @@
         string blogJson = JsonConvert.SerializeObject(requestModel);
         var httpContent = new StringContent(blogJson, Encoding.UTF8, Application.Json);
         var response = await HttpClient.PostAsync(apiEndpoint, httpContent);
+        if(response.IsSuccessStatusCode)
+        {
+            var message = await response.Content.ReadAsStringAsync();
+            await JsRuntime.InvokeVoidAsync("alert", message);
+            requestModel = new();
+            await List();
+        }
+    }
+
+    public async Task Edit(int id)
+    {
+        var response = await HttpClient.GetAsync(apiEndpoint + id);
+        if(response.IsSuccessStatusCode)
+        {
+            var json = await response.Content.ReadAsStringAsync();
+            requestModel = JsonConvert.DeserializeObject<BlogModel>(json)!;
+        }
+    }
+
+    public async Task Update()
+    {
+        string blogJson = JsonConvert.SerializeObject(requestModel);
+        var httpContent = new StringContent(blogJson, Encoding.UTF8, Application.Json);
+        var response = await HttpClient.PutAsync(apiEndpoint + requestModel.BlogId, httpContent);
         if(response.IsSuccessStatusCode)
         {
             var message = await response.Content.ReadAsStringAsync();
