@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
+using SSDLDotNetCore.BlazorServerApp;
 using SSDLDotNetCore.BlazorServerApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,11 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
 var app = builder.Build();
+
+builder.Services.AddDbContext<AppDbContext>(opt => {
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("DcConnection"));
+}, ServiceLifetime.Transient,
+ServiceLifetime.Transient);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
