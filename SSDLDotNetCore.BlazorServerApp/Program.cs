@@ -11,12 +11,12 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
-var app = builder.Build();
-
 builder.Services.AddDbContext<AppDbContext>(opt => {
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("DcConnection"));
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
 }, ServiceLifetime.Transient,
 ServiceLifetime.Transient);
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

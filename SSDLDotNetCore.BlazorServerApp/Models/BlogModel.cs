@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SSDLDotNetCore.BlazorServerApp.Models
 {
-    [Table("Blog")]
+    [Table("Tbl_blog")]
     public class BlogModel
     {
         [Key]
