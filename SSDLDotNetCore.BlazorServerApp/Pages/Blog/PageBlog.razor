@@ -61,7 +61,10 @@
 
     private async Task List()
     {
-        lst = await _db.Blogs.ToListAsync();
+        lst = await _db.Blogs
+            .OrderByDescending(x => x.BlogId)
+            .Take(10)
+            .ToListAsync();
     }
 
     private async Task Save()
