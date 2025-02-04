@@ -39,6 +39,10 @@
             @foreach (var item in lst)
             {
                 <tr>
+                    <td>
+                        <button type="button" class="btn btn-warning" @onclick="() => Edit(item.BlogId)">Edit</button>
+                        @* <button type="button" class="btn btn-warning" @onclick="() => Delete(item.BlogId)">Delete</button> *@
+                    </td>
                     <td>@(++count)</td>
                     <td>@item.BlogId</td>
                     <td>@item.BlogTitle</td>
@@ -74,6 +78,14 @@
 
         requestModel = new();
         await List();
+    }
+
+    private async Task Edit(int id)
+    {
+        var item = await _db.Blogs.FindAsync(id);
+        if (item is null) return;
+
+        requestModel = item;
     }
 
     private void Cancel()
