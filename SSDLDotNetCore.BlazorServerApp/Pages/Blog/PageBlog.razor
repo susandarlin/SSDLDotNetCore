@@ -28,6 +28,7 @@
     <table class="table">
         <thead>
             <tr>
+                <td></td>
                 <td>No.</td>
                 <td>Id</td>
                 <td>Title</td>
@@ -73,7 +74,20 @@
 
     private async Task Save()
     {
-        await _db.Blogs.AddAsync(requestModel);
+        if(requestModel.BlogId == 0)
+        {
+            await _db.Blogs.AddAsync(requestModel);
+        }
+        else
+        {
+            var item = await _db.Blogs.FindAsync(requestModel.BlogId);
+            if(item is null) return;
+
+            item.BlogTitle = requestModel.BlogTitle;
+            item.BlogAuthor = requestModel.BlogAuthor;
+            item.BlogContent = requestModel.BlogContent;
+        }
+
         await _db.SaveChangesAsync();
 
         requestModel = new();
@@ -82,7 +96,9 @@
 
     private async Task Edit(int id)
     {
-        var item = await _db.Blogs.FindAsync(id);
+        var item = await _db.Blogs
+            .AsNoTracking()
+            .FirstOrDefaultAsync(x => x.BlogId == id); 
         if (item is null) return;
 
         requestModel = item;
