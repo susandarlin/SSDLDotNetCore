@@ -1,10 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SSDLDotNetCore.LoginApp.EFDbContext;
 
-public class AppDbContext
+public class AppDbContext : DbContext
 {
+    public AppDbContext(DbContextOptions options) : base(options)
+    {
+    }
+    public DbSet<LoginModel> Logins { get; set; }
+    public DbSet<UserModel> Users { get; set; }
 }
 
 [Table("Tbl_Login")]
