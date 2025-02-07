@@ -24,11 +24,19 @@ namespace SSDLDotNetCore.LoginApp.Controllers
             var item = await _db.Users.FirstOrDefaultAsync(x => x.Email == user.Email && x.Password == user.Password);
             if (item is null) return View();
 
+            var sessionId = Guid.NewGuid().ToString();
+            var sessionExpired = DateTime.Now.AddSeconds(40);
+
+            CookieOptions cookie = new CookieOptions();
+            cookie.Expires = sessionExpired;
+            Response.Cookies.Append("UserId", item.Id.ToString(), cookie);
+            Response.Cookies.Append("SessionId", sessionId, cookie);
+
             await _db.Logins.AddAsync(new LoginModel
             {
-                SessionId = Guid.NewGuid().ToString(),
-                UserId = user.Id.ToString(),
-                SessionExpired = DateTime.Now.AddMinutes(30)
+                SessionId = sessionId,
+                UserId = item.Id.ToString(),
+                SessionExpired = sessionExpired
             });
 
             await _db.SaveChangesAsync();
