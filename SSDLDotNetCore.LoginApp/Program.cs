@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SSDLDotNetCore.LoginApp.EFDbContext;
+using SSDLDotNetCore.LoginApp.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseCookieMiddleware();
 
 app.UseRouting();
 
