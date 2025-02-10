@@ -25,7 +25,7 @@ namespace SSDLDotNetCore.LoginApp.Controllers
             if (item is null) return View();
 
             var sessionId = Guid.NewGuid().ToString();
-            var sessionExpired = DateTime.Now.AddSeconds(40);
+            var sessionExpired = DateTime.Now.AddSeconds(20);
 
             CookieOptions cookie = new CookieOptions();
             cookie.Expires = sessionExpired;

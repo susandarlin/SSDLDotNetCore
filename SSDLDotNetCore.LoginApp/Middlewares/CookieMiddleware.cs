@@ -17,8 +17,33 @@ public class CookieMiddleware
         if (requestUrl == "/login" || requestUrl == "/login/index")
             goto result;
 
-        result:
-            await _next(httpContext);
+        var cookies = httpContext.Request.Cookies;
+        if (cookies["UserId"] is null || cookies["SessionId"] is null)
+        {
+            httpContext.Response.Redirect("/login");
+            goto result;
+        }
+
+        string UserId = cookies["UserId"]!.ToString();
+        string SessionId = cookies["SessionId"]!.ToString();
+
+        var login = appDbContext.Logins.FirstOrDefault(x => 
+            x.SessionId == SessionId && 
+            x.UserId == UserId);
+        if(login is null)
+        {
+            httpContext.Response.Redirect("/login");
+            goto result;
+        }
+
+        if(login.SessionExpired < DateTime.Now)
+        {
+            httpContext.Response.Redirect("/login");
+            goto result;
+        }
+
+    result:
+        await _next(httpContext);
     }
 }
 
