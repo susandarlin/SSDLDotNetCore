@@ -13,7 +13,12 @@ public class CookieMiddleware
 
     public async Task InvokeAsync(HttpContext httpContext, AppDbContext appDbContext)
     {
-        await _next(httpContext);
+        var requestUrl = httpContext.Request.Path.ToString().ToLower();
+        if (requestUrl == "/login" || requestUrl == "/login/index")
+            goto result;
+
+        result:
+            await _next(httpContext);
     }
 }
 
