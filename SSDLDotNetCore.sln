@@ -81,7 +81,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.BlazorWasmAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.BlazorServerApp", "SSDLDotNetCore.BlazorServerApp\SSDLDotNetCore.BlazorServerApp.csproj", "{2F3E254D-EC64-4713-A612-A87D96C72A58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.LoginApp", "SSDLDotNetCore.LoginApp\SSDLDotNetCore.LoginApp.csproj", "{7214567A-0A4F-4273-8802-4ECA7E4A9472}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSDLDotNetCore.LoginApp", "SSDLDotNetCore.LoginApp\SSDLDotNetCore.LoginApp.csproj", "{7214567A-0A4F-4273-8802-4ECA7E4A9472}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSDLDotNetCore.EFCoreDataBaseFirstAuto", "SSDLDotNetCore.EFCoreDataBaseFirstAuto\SSDLDotNetCore.EFCoreDataBaseFirstAuto.csproj", "{A0488816-4E16-48E4-9606-872563F63783}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -237,6 +239,10 @@ Global
 		{7214567A-0A4F-4273-8802-4ECA7E4A9472}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7214567A-0A4F-4273-8802-4ECA7E4A9472}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7214567A-0A4F-4273-8802-4ECA7E4A9472}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0488816-4E16-48E4-9606-872563F63783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0488816-4E16-48E4-9606-872563F63783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0488816-4E16-48E4-9606-872563F63783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0488816-4E16-48E4-9606-872563F63783}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
