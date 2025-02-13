@@ -12,5 +12,9 @@ namespace SSDLDotNetCore.EFCoreDataBaseFirstAuto
 
         // dotnet ef dbcontext scaffold "Server= SANDAR\MSSQLSERVER2012; Database=SSDLDotNetCore; User Id=sa; Password=admin123!; TrustServerCertificate = true;" Microsoft.EntityFrameworkCore.SqlServer -o EfCoreDataModels -c AppDbContext -t Tbl_Blog
 
+
+        // Force to override (-f)
+        // dotnet ef dbcontext scaffold "Server= SANDAR\MSSQLSERVER2012; Database=SSDLDotNetCore; User Id=sa; Password=admin123!; TrustServerCertificate = true;" Microsoft.EntityFrameworkCore.SqlServer -o EfCoreDataModels -c AppDbContext -f
+
     }
 }
